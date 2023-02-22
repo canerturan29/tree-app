@@ -1,19 +1,11 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getNodeSelector, selectNodeList } from '../redux/selectors'
-import { NodeItem } from '../types'
 import {
   Card,
   CardContent,
-  CardHeader,
-  TextField,
-  Input,
-  IconButton,
-} from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { makeStyles } from "@material-ui/core/styles";
-import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
-import KeyboardArrowUpOutlinedIcon from "@material-ui/icons/KeyboardArrowUpOutlined";
+  CardHeader, Input, TextField
+} from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useDispatch, useSelector } from 'react-redux';
+import { getNodeSelector, selectNodeList } from '../redux/selectors';
 import { updateNode } from '../redux/treeSlice';
 import CardMenu from './CardMenu';
 
@@ -33,14 +25,14 @@ export default function NodeCard({ id }: Props) {
 
   return (
     <li>
-      <Card className={classes.rootCard}>
+      <Card>
         <CardHeader
-          className={classes.cardHeader}
+
           title={
             <Input
               placeholder="Name"
               value={node?.name}
-              onChange={e => dispatch(updateNode({ id, name: e.target.value }))}
+              onChange={(e: any) => dispatch(updateNode({ id, name: e.target.value }))}
 
               endAdornment={
                 <AccountCircleIcon fontSize="large" color="primary" />
@@ -48,7 +40,7 @@ export default function NodeCard({ id }: Props) {
             />
           }
         />
-        <CardContent className={classes.cardContent}>
+        <CardContent >
 
 
           <TextField
@@ -56,13 +48,13 @@ export default function NodeCard({ id }: Props) {
             size="small"
             label="Self Point"
             value={node?.point}
-            onChange={e => dispatch(updateNode({ id, point: Number(e.target.value) }))}
+            onChange={(e: any) => dispatch(updateNode({ id, point: Number(e.target.value) }))}
 
           />
 
-          <div className={classes.cardText}>Total Point: {calculateTotalPoint(id)}</div>
+          <div >Total Point: {calculateTotalPoint(id)}</div>
         </CardContent>
-        <CardMenu nodeId={node.nodeId} />
+        <CardMenu node={node as any} />
       </Card>
 
 

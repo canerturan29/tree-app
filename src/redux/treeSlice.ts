@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { getChildrenNodeList } from "../helpers"
 import { initialState, NodeFactory, NodeItem } from "../types"
 
 
@@ -17,7 +18,8 @@ export const treeSlice = createSlice({
             Object.assign(state.nodeList.find(item => item.id == payload.id) || {}, payload)
         },
         removeNode: (state, { payload }: PayloadAction<string>) => {
-            state.nodeList = state.nodeList.filter(item => item.id !== payload)
+            const childrenList = getChildrenNodeList(state.nodeList)(payload)
+            state.nodeList = state.nodeList.filter(item => !childrenList?.includes(item.id))
         }
 
     }
