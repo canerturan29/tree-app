@@ -19,6 +19,8 @@ export const treeSlice = createSlice({
         },
         removeNode: (state, { payload }: PayloadAction<string>) => {
             const childrenList = getChildrenNodeList(state.nodeList)(payload)
+            const parent = state.nodeList.find(item => item.children?.includes(payload))
+            if (parent) parent.children = parent.children.filter(item => item !== payload)
             state.nodeList = state.nodeList.filter(item => !childrenList?.includes(item.id))
         }
 

@@ -10,6 +10,7 @@ import { NodeItem } from '../types';
 
 const options = ["Add Node", "Remove", "Request Point", "Request History"];
 const ITEM_HEIGHT = 48;
+
 export default function CardMenu({ node }: { node: NodeItem }) {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const dispatch = useDispatch()

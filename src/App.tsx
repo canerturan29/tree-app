@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@mui/material";
-
+import "./App.scss"
 import TreeView from './components/TreeView';
 import { useDispatch } from 'react-redux';
 import { createNewNode } from './redux/treeSlice';

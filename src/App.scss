@@ -112,3 +112,36 @@
     justify-content: space-around;
   }
 }
+.rootCard{ 
+  max-width: 200;
+   margin: "auto";
+    position: "relative" }
+  .cardHeader {
+    display: "flex";
+    justify-content: "flex-start";
+    align-items: "center";
+  }
+  .cardContent {
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "flex-start";
+    align-items: "flex-start";
+    padding-top: "0";
+    padding-bottom: "0";
+  }
+  .cardText {
+    margin-top: "1rem";
+    font-size: "1rem";
+    font-weight: "bold"
+  }
+  .App{
+    align-items: center;
+    justify-content: center;
+    display: grid;
+  }
+//   input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+

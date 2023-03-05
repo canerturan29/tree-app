@@ -8,13 +8,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getNodeSelector, selectNodeList } from '../redux/selectors';
 import { updateNode } from '../redux/treeSlice';
 import CardMenu from './CardMenu';
+;
+
+
 
 export default function NodeCard({ id }: Props) {
+  
   const node = useSelector(getNodeSelector(id))
   const dispatch = useDispatch()
-
   const nodeList = useSelector(selectNodeList)
   function calculateTotalPoint(_id: string) {
+
     const _node = nodeList.find(item => item.id == _id)
     let totalPoint = _node?.point || 0
     if (_node?.children.length) {
@@ -25,9 +29,11 @@ export default function NodeCard({ id }: Props) {
 
   return (
     <li>
-      <Card>
+      <Card sx={{ maxWidth: 200,
+   margin: "auto",
+    position: "relative"}}>
         <CardHeader
-
+        
           title={
             <Input
               placeholder="Name"
@@ -40,7 +46,7 @@ export default function NodeCard({ id }: Props) {
             />
           }
         />
-        <CardContent >
+        <CardContent className="cardContent">
 
 
           <TextField
@@ -52,7 +58,7 @@ export default function NodeCard({ id }: Props) {
 
           />
 
-          <div >Total Point: {calculateTotalPoint(id)}</div>
+          <div className="cardText" >Total Point: {calculateTotalPoint(id)}</div>
         </CardContent>
         <CardMenu node={node as any} />
       </Card>
