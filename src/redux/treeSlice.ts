@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getChildrenNodeList } from "../helpers"
-import { initialState, NodeFactory, NodeItem } from "../types"
+import { initialState, IRequest, NodeFactory, NodeItem, RequestFactory } from "../types"
 
 
 export const treeSlice = createSlice({
@@ -22,8 +22,17 @@ export const treeSlice = createSlice({
             const parent = state.nodeList.find(item => item.children?.includes(payload))
             if (parent) parent.children = parent.children.filter(item => item !== payload)
             state.nodeList = state.nodeList.filter(item => !childrenList?.includes(item.id))
+        }, createRequest: (state, { payload }: PayloadAction<IRequest>) => {
+            const request = RequestFactory(payload)
+            state.requestList.push(request)
+        },
+        answeringRequest: (state, { payload }: PayloadAction<Partial<IRequest>>) => {
+            Object.assign(state.requestList.find(item => item.reqId === payload.reqId) || {}, payload)
+        },
+        refreshRequests: (state) => {
+            Object.assign(state.requestList = [])
         }
 
     }
 })
-export const { createNewNode, removeNode, updateNode } = treeSlice.actions
+export const { createNewNode, removeNode, updateNode, createRequest, answeringRequest, refreshRequests } = treeSlice.actions

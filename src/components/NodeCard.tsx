@@ -19,7 +19,7 @@ export default function NodeCard({ id }: Props) {
   const nodeList = useSelector(selectNodeList)
   function calculateTotalPoint(_id: string) {
 
-    const _node = nodeList.find(item => item.id == _id)
+    const _node = nodeList.find(item => item.id === _id)
     let totalPoint = _node?.point || 0
     if (_node?.children.length) {
       totalPoint += _node.children.reduce((acc, item) => acc + calculateTotalPoint(item), 0)
